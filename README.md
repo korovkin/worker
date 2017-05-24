@@ -1,5 +1,4 @@
-# go routine concurrency limiter
-go lang concurrency limiter.
+# Sync / Async serial worker queue (GCD)
 
 ## builds
 
@@ -10,6 +9,9 @@ go lang concurrency limiter.
 GCD style serial execution of function (lambdas / blocks)
 
 ```
+  import "github.com/korovkin/worker"
+  ...
+
   w := worker.NewWorkerDefault("test")
   for i := 0; i < 1000; i++ {
     i := i
@@ -18,7 +20,7 @@ GCD style serial execution of function (lambdas / blocks)
   	})
   }
   worker.EnqueueSync(func() {
-        fmt.Println("sync!")
+      fmt.Println("sync!")
   })
 ```
 
