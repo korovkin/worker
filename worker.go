@@ -5,13 +5,15 @@ import (
 )
 
 type WorkerJob struct {
-	Job         func()
+	Job func()
+
 	stop        bool
 	syncChannel chan int
 }
 
 type Worker struct {
-	Name  string
+	Name string
+
 	queue chan WorkerJob
 }
 
@@ -41,6 +43,10 @@ func NewWorker(name string, queue chan WorkerJob) *Worker {
 	w := Worker{Name: name, queue: queue}
 	go workerLoop(w)
 	return &w
+}
+
+func (w *Worker) Close() {
+	w.Stop(func() {})
 }
 
 func (w *Worker) Stop(job func()) {
