@@ -68,3 +68,7 @@ func (w *Worker) EnqueueSync(job func()) {
 		log.Fatalln(coffee)
 	}
 }
+
+func (w *Worker) GetQueueSize() int {
+	return len(w.queue)
+}
